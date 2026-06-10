@@ -113,15 +113,6 @@ document.querySelector("#app").innerHTML = `
         HTML • CSS • JavaScript
       </div>
 
-      <div class="project-links">
-        <a
-          href="https://github.com/tubetwinslive/StudyMaxx-1"
-          target="_blank"
-        >
-          GitHub
-        </a>
-      </div>
-
     </div>
 
     <div class="project-card">
