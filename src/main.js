@@ -74,6 +74,7 @@ document.querySelector("#app").innerHTML = `
       </p>
 
     </div>
+    
 
   </div>
 
@@ -287,22 +288,63 @@ document.querySelector("#app").innerHTML = `
   </div>
 
 </section>
+<section id="contact" class="contact">
+
+  <h2 class="section-title">
+    Get In Touch
+  </h2>
+
+  <div class="contact-card">
+
+    <p>
+      I'm always interested in new opportunities,
+      collaborations, and software engineering projects.
+    </p>
+
+    <div class="contact-links">
+
+      <a href="mailto:senodhanavaratne@gmail.com">
+        📧 Email
+      </a>
+
+      <a href="https://github.com/FrostB0und"
+         target="_blank">
+        🐙 GitHub
+      </a>
+
+      <a href="https://www.linkedin.com/feed/?msgControlName=view_message_button&msgConversationId=2-ZmE3NjkwMzEtNTczMi00ZTNlLTgzOTktZGM5MmRlMGE4NTYyXzEwMA%3D%3D&msgOverlay=true&trk=false"
+         target="_blank">
+        💼 LinkedIn
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
 `;
 
 /* Stars */
+
+const stars = [];
 
 for (let i = 0; i < 100; i++) {
   const star = document.createElement("div");
 
   star.classList.add("star");
 
-  star.style.left = Math.random() * 100 + "%";
-  star.style.top = Math.random() * 100 + "%";
+  const x = Math.random() * 100;
+  const y = Math.random() * 100;
 
-  star.style.animationDelay =
-    Math.random() * 4 + "s";
+  star.style.left = x + "%";
+  star.style.top = y + "%";
 
   document.body.appendChild(star);
+
+  stars.push({
+    element: star,
+    speed: Math.random() * 0.3 + 0.1,
+  });
 }
 
 /* Cursor Glow */
@@ -319,14 +361,63 @@ document.addEventListener("mousemove", (e) => {
 });
 
 /* Planet Scroll Animation */
-
-const planet = document.querySelector(".planet");
+const planetContainer = document.querySelector(".hero-right");
 
 window.addEventListener("scroll", () => {
+
   const scrollY = window.scrollY;
 
-  planet.style.transform = `
-    translateY(${-scrollY * 0.2}px)
-    rotate(${scrollY * 0.2}deg)
-  `;
+  const x = Math.sin(scrollY * 0.002) * 250;
+  const y = scrollY * 0.05;
+
+  planetContainer.style.transform =
+    `translate(${x}px, ${y}px)`;
+
 });
+function createShootingStar() {
+
+  const star = document.createElement("div");
+
+  star.classList.add("shooting-star");
+
+  document.body.appendChild(star);
+
+  let x = Math.random() * window.innerWidth;
+  let y = Math.random() * (window.innerHeight * 0.4);
+
+  let vx = 12 + Math.random() * 8;
+  let vy = 4 + Math.random() * 3;
+
+  let life = 0;
+
+  function animate() {
+
+    life++;
+
+    x += vx;
+    y += vy;
+
+    vx *= 0.995;
+    vy *= 0.995;
+
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+
+    star.style.opacity = 1 - life / 80;
+
+    if (life < 80) {
+      requestAnimationFrame(animate);
+    } else {
+      star.remove();
+    }
+  }
+
+  animate();
+}
+setInterval(() => {
+
+  if(Math.random() > 0.5){
+    createShootingStar();
+  }
+
+}, 100);
