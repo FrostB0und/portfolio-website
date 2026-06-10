@@ -222,7 +222,10 @@ nav {
 
   transition: transform 0.1s linear;
 
-  @keyframes floatPlanet {
+  animation: floatPlanet 6s ease-in-out infinite;
+}
+
+@keyframes floatPlanet {
 
   0% {
     transform: translateY(0px);
@@ -235,12 +238,9 @@ nav {
   100% {
     transform: translateY(0px);
   }
+
 }
 
-.planet {
-  animation: floatPlanet 6s ease-in-out infinite;
-}
-}
 .planet::before {
   content: "";
 
