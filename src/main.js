@@ -35,7 +35,19 @@ document.querySelector("#app").innerHTML = `
 
     <div class="buttons">
       <a href="#projects">View Projects</a>
-      <a href="#">Download CV</a>
+      <a
+  href="/cv/Senodh_Anavaratne_CV.pdf"
+  target="_blank"
+>
+  View CV
+</a>
+
+<a
+  href="/cv/Senodh_Anavaratne_CV.pdf"
+  download
+>
+  Download CV
+</a>
     </div>
 
   </div>
